@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -31,7 +32,7 @@ const AuthContainer = ({ page, label }: AuthContainerProps) => {
         <>
           <RegisterForm label={label} />
           <p className="text-gray-500 text-sm font-body text-center my-4">
-            Already have an account?{" "}
+            Already have an account?
             <Link href="/signin" className="text-white hover:underline">
               Sign in now
             </Link>
@@ -41,7 +42,7 @@ const AuthContainer = ({ page, label }: AuthContainerProps) => {
         <>
           <LoginForm label={label} />
           <p className="text-gray-500 text-sm font-body text-center my-4">
-            Didn't have an account?{" "}
+            Didn't have an account?
             <Link href="/signup" className="text-white hover:underline">
               Sign up now
             </Link>
