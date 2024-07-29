@@ -2,12 +2,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
-import { useEffect } from "react"
 
 const Profile = () => {
-  useEffect(() => {
-
-  }, [])
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

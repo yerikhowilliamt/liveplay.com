@@ -31,7 +31,7 @@ const AuthContainer = ({ page, label }: AuthContainerProps) => {
       {page === "signup" ? (
         <>
           <RegisterForm label={label} />
-          <p className="text-gray-500 text-sm font-body text-center my-4">
+          <p className="text-gray-500 text-sm font-body my-4 flex justify-center gap-2">
             Already have an account?
             <Link href="/signin" className="text-white hover:underline">
               Sign in now
@@ -41,7 +41,7 @@ const AuthContainer = ({ page, label }: AuthContainerProps) => {
       ) : (
         <>
           <LoginForm label={label} />
-          <p className="text-gray-500 text-sm font-body text-center my-4">
+          <p className="text-gray-500 text-sm font-body my-4 flex justify-center gap-2">
             Didn't have an account?
             <Link href="/signup" className="text-white hover:underline">
               Sign up now

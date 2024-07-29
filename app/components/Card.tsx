@@ -5,7 +5,6 @@ import Link from "next/link";
 import { FaHeart } from "react-icons/fa";
 
 type CardProps = {
-  key: any;
   src: string;
   alt: string;
   title: string;
@@ -14,9 +13,9 @@ type CardProps = {
   className: string;
 }
 
-const Card = ({ key, src, alt, title, location, onClick, className }: CardProps) => {
+const Card = ({ src, alt, title, location, onClick, className }: CardProps) => {
   return (
-    <div key={key} className="relative w-72 2xl:h-44 md:h-36 h-44">
+    <div className="relative w-72 2xl:h-44 md:h-36 h-44">
       <Image
         src={src}
         alt={alt}
