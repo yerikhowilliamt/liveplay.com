@@ -14,8 +14,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { FormError } from "../components/FormError";
-import { FormSuccess } from "../components/FormSuccess";
+import { FormError } from "./FormError";
+import { FormSuccess } from "./FormSuccess";
 import { useState, useTransition } from "react";
 import { newPassword } from "@/actions/newPassword";
 import { useSearchParams } from "next/navigation";
@@ -30,20 +30,26 @@ const ResetForm = () => {
   const form = useForm<z.infer<typeof NewPasswordSchema>>({
     resolver: zodResolver(NewPasswordSchema),
     defaultValues: {
-      password: ""
+      password: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof NewPasswordSchema>) => {
+    if (!token) {
+      setError("Token is missing from the URL.");
+      return;
+    }
+
     setError("");
     setSuccess("");
-
-    console.log(values)
 
     startTransition(() => {
       newPassword(values, token).then((data) => {
         setError(data?.error);
         setSuccess(data?.success);
+      }).catch((err) => {
+        setError("An unexpected error occurred.");
+        console.error(err);
       });
     });
   };
@@ -63,7 +69,7 @@ const ResetForm = () => {
                   <Input
                     {...field}
                     disabled={isPending}
-                    type="Password"
+                    type="password"
                     className="bg-[#3333] text-body py-6 placeholder:text-gray-500 inline-block w-full"
                     placeholder="Enter your new password here"
                   />
@@ -72,7 +78,7 @@ const ResetForm = () => {
               </FormItem>
             )}
           />
-          
+
           <FormError message={error} />
           <FormSuccess message={success} />
           <Button

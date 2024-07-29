@@ -21,27 +21,28 @@ const NewVerificationForm = () => {
   const token = searchParams.get("token");
 
   const handleClick = () => {
-    setClick(!click)
+    setClick(true);
     router.push('/signin');
-  }
+  };
 
-  const onSubmit = useCallback(() => {
+  const onSubmit = useCallback(async () => {
     if (success || error) return;
     
     if (!token) {
       setError("Missing token!");
+      setLoading(false);
       return;
     }
 
-    newVerification(token)
-      .then((data) => {
-        setSuccess(data.success);
-        setError(data.error);
-      })
-      .catch(() => {
-        setError("Something went wrong!")
-      })
-
+    try {
+      const data = await newVerification(token);
+      setSuccess(data.success);
+      setError(data.error);
+    } catch {
+      setError("Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
   }, [token, success, error]);
 
   useEffect(() => {
@@ -55,13 +56,11 @@ const NewVerificationForm = () => {
           <h3 className="text-xl text-gray-500 font-head font-bold">
             Confirming your verification
           </h3>
-          {!success && !error && (
-          <BeatLoader color="white" loading={loading} />
+          {loading && !success && !error && (
+            <BeatLoader color="white" loading={loading} />
           )}
           <FormSuccess message={success} />
-          {!success && (
           <FormError message={error} />
-          )}
         </div>
       </CardHeader>
       <CardFooter>

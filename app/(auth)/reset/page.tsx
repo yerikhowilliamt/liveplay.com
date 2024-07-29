@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ResetForm from '../ResetForm';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
