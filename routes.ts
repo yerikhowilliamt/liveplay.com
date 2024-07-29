@@ -3,7 +3,6 @@
  * These routes do not require authentication
  */
 export const publicRoutes = [
-  "/",
   "/new-verification",
   "/sport",
   "/music",

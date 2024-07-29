@@ -21,7 +21,7 @@ const NewVerificationForm = () => {
   const token = searchParams.get("token");
 
   const handleClick = () => {
-    setClick(true);
+    setClick(!click);
     router.push('/signin');
   };
 

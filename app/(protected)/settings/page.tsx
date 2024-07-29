@@ -1,19 +1,20 @@
-import { signOut } from '@/auth'
-import { Button } from '@/components/ui/button';
+"use client"
 
-const SettingsPage = async () => {
+import { Button } from '@/components/ui/button';
+import { signOut } from 'next-auth/react';
+
+const SettingsPage = () => {
+
+  const onClick = () => {
+    signOut();
+  }
+
   
   return (
     <div>
-      <form action={async () => {
-        "use server";
-
-        await signOut();
-      }}>
-      <Button type='submit'>
+      <Button onClick={onClick}>
         Sign Out
       </Button>
-      </form>
     </div>
   )
 }
