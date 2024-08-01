@@ -17,7 +17,7 @@ import {
 import { FormError } from "../components/FormError";
 import { FormSuccess } from "../components/FormSuccess";
 import { useState, useTransition } from "react";
-import { login } from "@/actions/login";
+import { login } from "@/actions/signin";
 import Link from "next/link";
 
 type LoginFormProps = {

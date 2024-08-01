@@ -3,6 +3,7 @@
  * These routes do not require authentication
  */
 export const publicRoutes = [
+  "/",
   "/new-verification",
   "/sport",
   "/music",
@@ -30,4 +31,4 @@ export const apiAuthPrefix = "/api/auth";
 /**
  * The default redirect path after logging
  */
-export const DEFAULT_SIGNIN_REDIRECT = "/"
+export const DEFAULT_SIGNIN_REDIRECT = "/home"

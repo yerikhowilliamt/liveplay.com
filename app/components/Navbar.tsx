@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="flex items-center">
         <Link href="/">
           <h1 className="2xl:text-5xl text-2xl text-[#db0000] font-head font-semibold">
-            Event.com
+            Liveplay
           </h1>
         </Link>
         <ul className="lg:flex gap-x-4 ml-14 hidden">
@@ -59,7 +59,7 @@ const Navbar = () => {
       <div className="flex items-center md:gap-8 gap-4">
         <Search className="text-gray-300 h-5 2xl:w-7 w-5 2xl:h-7 cursor-pointer" />
         <Bell className="text-gray-300 h-5 2xl:w-7 w-5 2xl:h-7 cursor-pointer" />
-        <Profile/>
+        <Profile />
       </div>
     </div>
   );

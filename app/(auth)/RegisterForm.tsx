@@ -17,7 +17,7 @@ import {
 import { FormError } from "../components/FormError";
 import { FormSuccess } from "../components/FormSuccess";
 import { useState, useTransition } from "react";
-import { register } from "@/actions/register";
+import { register } from "@/actions/signup";
 
 type RegisterFormProps = {
   label: string;

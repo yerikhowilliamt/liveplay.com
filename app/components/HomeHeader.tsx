@@ -17,7 +17,7 @@ const HomeHeader = () => {
           <p className="font-body line-clamp-3"> <span className="hidden md:block">Ultra Music Festival is an annual outdoor electronic music festival that takes place in March in Miami, Florida. The festival was founded in 1999 by Russell Faibisch and Alex Omes.</span> The world's premier electronic music festival, boasting elite DJs and unparalleled production located in the beautiful city of Miami.</p>
         </div>
         <div className="w-full md:w-1/3 flex justify-between gap-6 z-10 font-head">
-          <Button className="w-full bg-white/40 hover:bg-white/30 text-white cursor-pointer text-base md:text-lg flex gap-1"><GrCircleInformation /> Details</Button>
+          <Button className="w-full bg-white/40 hover:bg-white/30 text-white text-base md:text-lg flex gap-1"><GrCircleInformation /> Details</Button>
           <Button className="w-full flex gap-1 text-base md:text-lg"><MdOutlineShoppingCart /> Buy Now</Button>
         </div>
         </div>
