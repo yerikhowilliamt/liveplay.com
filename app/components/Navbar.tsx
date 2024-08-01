@@ -23,7 +23,7 @@ const Navbar = () => {
   const pathName = usePathname();
 
   return (
-    <div className="w-full items-center justify-between px-5 sm:px-6 py-5 md:py-10 lg:px8 flex relative z-10">
+    <div className="w-full items-center justify-between flex relative z-10">
       <div className="flex items-center">
         <Link href="/">
           <h1 className="2xl:text-5xl text-2xl text-[#db0000] font-head font-semibold">
