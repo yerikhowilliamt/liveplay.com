@@ -1,25 +1,67 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  service: process.env.MAIL_SERVICE,
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASSWORD,
+  },
+});
 
-export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmLink = `https://event-com-app.vercel.app/new-verification?token=${token}`;
-
-  await resend.emails.send({
-    from: "onboarding@resend.dev",
+const createVerificationEmail = (email: string, token: string) => {
+  const domain = process.env.PUBLIC_DOMAIN;
+  const verificationUrl = `${domain}/new-verification?token=${token}`;
+  return {
+    from: process.env.MAIL_FROM,
     to: email,
-    subject: "Confirm your email",
-    html: `<p>Click <a href="${confirmLink}">link</a> to confirm your email.</p>`,
+    subject: "Email Verification",
+    html: `
+    <h3>To activate your account, click the link below:</h3>
+      <a href="${verificationUrl}">Confirm your email.</a>
+    `,
+  };
+};
+
+const createPasswordResetEmail = (email: string, token: string) => {
+  const domain = process.env.PUBLIC_DOMAIN;
+  const resetLink = `${domain}/new-password?token=${token}`;
+  return {
+    from: process.env.MAIL_FROM,
+    to: email,
+    subject: "Reset password",
+    html: `
+    <h3>To reset your password, click the link below:</h3>
+      <a href="${resetLink}">Reset your password.</a>
+    `,
+  };
+};
+
+export const sendVerificationEmail = (email: string, token: string) => {
+  return new Promise((resolve, reject) => {
+    const mailOptions = createVerificationEmail(email, token);
+    transporter.sendMail(mailOptions, (err: any, info: any) => {
+      if (err) {
+        console.error("Error sending email:", err);
+        reject(err);
+      } else {
+        console.log("Email sent:", info.response);
+        resolve(true);
+      }
+    });
   });
 };
 
-export const sendPasswordResetEmail = async (email: string, token: string) => {
-  const resetLink = `https://event-com-app.vercel.app/new-password?token=${token}`;
-
-  await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: email,
-    subject: "Reset your password",
-    html: `<p>Click <a href="${resetLink}">link</a> to reset your password.</p>`,
+export const sendPasswordResetEmail = (email: string, token: string) => {
+  return new Promise((resolve, reject) => {
+    const mailOptions = createPasswordResetEmail(email, token);
+    transporter.sendMail(mailOptions, (err: any, info: any) => {
+      if (err) {
+        console.error("Error sending email:", err);
+        reject(err);
+      } else {
+        console.log("Email sent:", info.response);
+        resolve(true);
+      }
+    });
   });
 };
