@@ -37,17 +37,29 @@ const createPasswordResetEmail = (email: string, token: string) => {
 };
 
 export const sendVerificationEmail = (email: string, token: string) => {
-  return new Promise(() => {
+  return new Promise((resolve, reject) => {
     const mailOptions = createVerificationEmail(email, token);
+
     transporter.sendMail(mailOptions, (err: any, info: any) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(info);
+      }
     });
   });
 };
 
+
 export const sendPasswordResetEmail = (email: string, token: string) => {
-  return new Promise(() => {
+  return new Promise((resolve, reject) => {
     const mailOptions = createPasswordResetEmail(email, token);
     transporter.sendMail(mailOptions, (err: any, info: any) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(info);
+      }
     });
   });
 };

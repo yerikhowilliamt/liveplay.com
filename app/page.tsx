@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import Navbar from "../components/Navbar";
-import HomeHeader from "../components/HomeHeader";
+import Navbar from "./components/Navbar";
+import HomeHeader from "./components/HomeHeader";
 import Image from "next/image";
 import { recentlyAdded } from "@/data/recently-added";
-import EventCard from "../components/EventCard";
+import EventCard from "./components/EventCard";
 
 export default function Home() {
   return (
