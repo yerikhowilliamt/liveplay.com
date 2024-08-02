@@ -14,9 +14,19 @@ import Link from "next/link";
 import { useCUrrentUser } from "@/hooks/use-current-user";
 import { signout } from "@/actions/signout";
 import { RxExit } from "react-icons/rx";
+import { useRouter } from "next/navigation";
 
 const Profile = () => {
 const user = useCUrrentUser();
+const router = useRouter();
+
+const handleSignUp = () => {
+  router.push("/signup")
+}
+
+const handleSignIn = () => {
+  router.push("/signin")
+}
 
   const handleSignOut = () => {
     signout();
@@ -27,7 +37,7 @@ const user = useCUrrentUser();
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-10 rounded-sm">
           <Avatar className="h-10 w-10 2xl:h-12 2xl:w-12 rounded-sm">
-            <AvatarImage src={user?.image || ""} />
+            <AvatarImage src={user?.image || "/avatar.png"} />
             <AvatarFallback className="rounded-sm">{user?.name?.slice(0, 3)}</AvatarFallback>
           </Avatar>
         </Button>
@@ -38,7 +48,8 @@ const user = useCUrrentUser();
         forceMount
       >
         <DropdownMenuLabel>
-          <div className="flex flex-col gap-2">
+          {user?.role === "USER" ? (
+            <div className="flex flex-col gap-2">
             <p className="text-sm font-medium leading-none font-body">
               {user?.name}
             </p>
@@ -46,6 +57,13 @@ const user = useCUrrentUser();
               {user?.email}
             </p>
           </div>
+          ) : (
+            <div>
+          <DropdownMenuItem onClick={handleSignIn} className="cursor-pointer flex gap-2">Sign In</DropdownMenuItem>
+          <DropdownMenuItem onClick={handleSignUp} className="cursor-pointer flex gap-2">Sign Up</DropdownMenuItem>
+          </div>
+          ) }
+          
         </DropdownMenuLabel>
         <DropdownMenuLabel>
           <Link
