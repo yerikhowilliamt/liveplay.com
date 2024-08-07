@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="flex items-center">
         <Link href="/">
           <h1 className="2xl:text-5xl text-2xl text-[#db0000] font-head font-semibold">
-            Liveplay
+            LIVEPLAY
           </h1>
         </Link>
         <ul className="lg:flex gap-x-4 ml-14 hidden">
